@@ -1,10 +1,8 @@
+import React from "react";
 import akwunte from "@/assets/akwunte.png";
 import ezra from "@/assets/ezra.png";
 import nelly from "@/assets/nelly.png";
 import Footer from "@/scenes/footer";
-
-import React from 'react'
-
 
 
 
