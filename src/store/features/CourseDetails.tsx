@@ -11,13 +11,10 @@ export interface CourseDetail {
         status: string,
         imageURL: string,
         outline: any,
-
-
 }
 
 interface CourseDetailsState {
     courseDetails: CourseDetail[]
-
 }
 
 const initialState:  CourseDetailsState = {
