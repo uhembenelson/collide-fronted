@@ -12,7 +12,7 @@ const Index =() =>{
         <>
         <div className='w-screen mt-[4rem]'>
             <article className='flex flex-col md:flex-row'>
-                <div className='h-[50vh] md:h-screen'>
+                <div className='h-[70vh] md:h-screen'>
                     <img src={nelly} alt="nelson" className='w-[100%] flex items-center justify-center md:w-[54rem] h-full' />
                 </div>
                 <div className='flex flex-col items-center justify-center md:w-[54rem] bg-[#1C1C1C] h-[50vh] md:h-screen'>
@@ -22,7 +22,7 @@ const Index =() =>{
             </article>
 
             <article className='flex flex-col md:flex-row-reverse'>
-                <div className='h-[50vh] md:h-screen'>
+                <div className='h-[70vh] md:h-screen'>
                     <img src={ezra} alt="" className='w-[100%] flex items-center justify-center md:w-[54rem] h-full' />
                 </div>
                 <div className='flex flex-col items-center justify-center w-[100%] md:w-[54rem] bg-[#1C1C1C] h-[50vh] md:h-screen'>
@@ -32,7 +32,7 @@ const Index =() =>{
             </article>
 
             <article className='flex flex-col md:flex-row'>
-                <div className='h-[50vh] md:h-screen'>
+                <div className='h-[70vh] md:h-screen'>
                     <img src={akwunte} alt="" className='w-[100%] flex items-center justify-center md:w-[54rem] h-full' />
                 </div>
                 <div className='flex flex-col items-center justify-center w-[100%] md:w-[54rem] bg-[#1C1C1C] h-[50vh] md:h-screen'>
