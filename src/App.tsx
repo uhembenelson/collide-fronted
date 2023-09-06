@@ -15,6 +15,7 @@ import Aboutus from "../src/scenes/Pages/Aboutus/Index"
 import Team from "../src/scenes/Pages/Team/Index"
 import Login from "../src/scenes/Pages/Auth/Login"
 import Register from "../src/scenes/Pages/Auth/Register"
+import Dashboard from "../src/scenes/Pages/Dashboard/Index"
 
 
 
@@ -31,6 +32,9 @@ const router = createBrowserRouter(
       <Route path="our-team" element={<Team/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="register" element={<Register/>}/>
+      <Route path="Dashboard" element={<Dashboard/>}/>
+
+
      
     </Route>
   )

@@ -1,12 +1,13 @@
 import React from "react";
 import africa from "@/assets/africa.png";
 import bg from "@/assets/bgb.png";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import {z, ZodType} from "zod";
 import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/store/features/Api";
 import { useState } from "react";
+
 
 type FormData = {
     email: string,
@@ -16,6 +17,7 @@ type FormData = {
 }
 
 const Index = ()=>{
+    const navigate = useNavigate();
     const [errorMsg, SetErrorMsg] = useState("")
     const schema: ZodType<FormData> = z.object({
         email: z.string().min(3).max(30),
@@ -33,7 +35,9 @@ const Index = ()=>{
             return SetErrorMsg(response.error.data.message)
         }
         if(response?.data?.accessToken){
+            console.log("this is token",response?.data?.accessToken)
             localStorage.setItem("accessToken", response?.data?.accessToken);
+            navigate("/dashboard");
         }
        
     }catch{
