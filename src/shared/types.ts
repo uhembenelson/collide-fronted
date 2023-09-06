@@ -15,4 +15,13 @@ export interface ClassType {
   image: string;
 }
 
+export interface  Pokemon {
+
+}
+
+export interface Login {
+  email: string,
+  password: string
+}
+
 

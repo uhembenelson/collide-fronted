@@ -33,28 +33,26 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
             <div>
               {isAboveMediumScreens ? (
                 <div className={`${flexBetween} w-full`}>
-                  <div className={`${flexBetween} gap-16 text-sm`}>
+                  {/* <div className={`${flexBetween} gap-16 text-sm`}>
                     <Link
                       to="/"
-                      // selectedPage={selectedPage}
-                      // setSelectedPage={setSelectedPage}
                     />{" "}
                     Home
+
+
                     <Link
                       to="Aboutus"
-                      // selectedPage={selectedPage}
-                      // setSelectedPage={setSelectedPage}
                     />{" "}
                     About us
+
+
                     <Link to="/details" />
                     Our Team
                     <Link
                       to=""
-                      // selectedPage={selectedPage}
-                      // setSelectedPage={setSelectedPage}
                     />
                     Contact us
-                  </div>
+                  </div> */}
                 </div>
               ) : (
                 <button
