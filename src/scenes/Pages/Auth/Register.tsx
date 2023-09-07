@@ -1,29 +1,39 @@
 import React from "react";
-import africa from "@/assets/africa.png";
 import bg from "@/assets/bgb.png";
+import signImg from "@/assets/signin-img.png";
 import { Link } from "react-router-dom";
 import {z, ZodType} from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import { useSignupMutation } from "@/store/features/Api";
 import { useState } from "react";
+import {AiOutlineMail} from "react-icons/ai";
+import {RiLockPasswordLine} from "react-icons/ri";
+import {MdOutlineDriveFileRenameOutline} from "react-icons/md";
+import {AiOutlineEyeInvisible} from "react-icons/ai";
+import {AiOutlineEye} from "react-icons/ai";
+import "./style.css";
+
 type FormData = {
-    firstName: string,
-    lastName: string,
-    phoneNumber: number,
+    name: string,
     email: string,
     password: string
 };
 
 const Index =()=>{
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClick = () => {
+        setShowPassword((prevState) => {
+            return !prevState;
+        })
+    }
+
     const [errorMsg, SetErrorMsg] = useState("")
     const [sucessMsg, SetSucessMsg] = useState("")
     const schema: ZodType<FormData> = z.object({
-        firstName: z.string().min(3).max(30),
-        lastName: z.string().min(3).max(30),
-        phoneNumber: z.number().min(3).max(30),
+        name: z.string().min(3).max(30),
         email: z.string().email(),
-        password: z.string().min(3).max(30)
+        password: z.string().min(3).max(100)
     })
     const [signup, { isLoading: isChecking , error, data}] = useSignupMutation();
 
@@ -48,14 +58,16 @@ const Index =()=>{
     }
 
     return(
-        <div style={{backgroundImage: `url(${bg})`}} className="mt-[4rem] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen">
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-5/6 px-5">
-                <div className=" md:w-1/2 md:mt-20 mt-20">
-                    <img src={africa} alt=""/>
+        <div className="mt-[4rem] bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-auto pb-10">
+            <div className="md-h-[757px] px-2 md:px-0 overflow-hidden h-fit w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-5/6">
+                <div className="bg-[#0F1318] h-fit flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
+                <div className=" md:w-1/2 h-full overflow-hidden rounded-none md:rounded-[50px]">
+                    <img src={signImg} alt="" className="overflow-hidden"/>
                 </div>
-                <div className=" w-full md:w-1/3 md:mt-20 md:mb-0 mb-20">
+                <div className=" w-full md:w-1/3 mt-10 md:mt-0 md:mb-0 mb-20">
                     <form onSubmit={handleSubmit(submitData)} className="flex flex-col space-y-3 text-white md:text-center">
-                        <h2 className="text-[30px] md:text-[50px] text-center font-semibold">Get Started</h2>
+                        <h2 className="text-[30px] md:text-[40px] font-[poppins] self-center md:self-start text-center font-semibold">Sign Up</h2>
+                        <p className="text-[15px] px-4 md:px-0 pb-10 self-center md:self-start text-start">Already have an account? <Link className="text-[#6FC78F]" to={"/Login"}>Click here</Link> to sign in</p>
                         {error && 
                         <div className="bg-white h-10 flex items-center gap-5 rounded-sm">
                             <div className="bg-rose-600 w-3 h-full rounded-l-sm"></div>
@@ -70,60 +82,67 @@ const Index =()=>{
                         </div>
                         
                         }
-                        <section className="flex flex-col gap-4">
+                        <div className="flex flex-col mt-4 gap-4 p-6 md:p-0">
+                            <div className="flex flex-col items-start mb-4">
+                            <label className="text-[15px]" htmlFor="name">Name</label>
+                            <span className="flex items-center space-x-2 border-b-[2px] border-b-[#a0a0a1] w-full text-[#A0A0A1] text-[15px]">
+                            <MdOutlineDriveFileRenameOutline />
                             <input 
                             type="text" 
-                            placeholder="First Name" 
-                            className=" rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray bg-white focus:bg-slate-200" 
-                            {...register("firstName")}
+                            id="name"
+                            placeholder="Enter your name here" 
+                            className="bg-transparent w-full border-0 rounded-none h-[47px] md:h-[52px] indent-0 placeholder:text-[15px] placeholder:text-xl pb-0 outline-none" 
+                            {...register("name")}
                             />
-                            {errors.firstName && <span className="text-[.7rem] text-rose-600">{errors.firstName.message}</span>}
+                            </span>
+                            {errors.name && <span className="text-[.7rem] text-rose-600">{errors.name.message}</span>}
+                            </div>
 
-                            <input 
-                            type="text" 
-                            placeholder="Last Name" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray bg-white focus:bg-slate-200" 
-                            {...register("lastName")}
-                            />
-                            {errors.lastName && <span className="text-[.7rem] text-rose-600">{errors.lastName.message}</span>}
-
+                            <div className="flex flex-col items-start mb-4">
+                            <label className="flex flex-col items-start" htmlFor="email">Email</label>
+                            <span className="flex items-center space-x-2 border-b-[2px] border-b-[#a0a0a1] w-full text-[#A0A0A1] text-[15px]">
+                            <AiOutlineMail />
                             <input 
                             type="email" 
-                            id="" 
-                            placeholder="Email Address" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray bg-white focus:bg-slate-200" 
+                            id="email" 
+                            placeholder="Enter your email address here" 
+                            className="bg-transparent w-full border-0 rounded-none h-[47px] md:h-[52px] indent-0 placeholder:text-[15px] placeholder:text-xl pb-0 outline-none" 
                             {...register("email")}
                             />
+                            </span>
                             {errors.email && <span className="text-[.7rem] text-rose-600">{errors.email.message}</span>}
+                            </div>
 
+                            <div className="flex flex-col items-start mb-4">
+                            <label className="flex flex-col items-start" htmlFor="password">Password</label>
+                            <span className="flex items-center space-x-2 border-b-[2px] border-b-[#a0a0a1] w-full text-[#A0A0A1] text-[15px]">
+                            <RiLockPasswordLine />
                             <input 
-                            type="number" 
-                            id="" 
-                            placeholder="Phone Number" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray bg-white focus:bg-slate-200" 
-                            {...register("phoneNumber", {valueAsNumber: true})}
-                            />
-                            {errors.phoneNumber && <span className="text-[.7rem] text-rose-600">{errors.phoneNumber.message}</span>}
-
-                            <input 
-                            type="password" 
-                            id="" 
-                            placeholder="********" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray bg-white focus:bg-slate-200" 
+                            type={showPassword ? "text" : "password"} 
+                            id="password" 
+                            placeholder="Enter your password here" 
+                            className="bg-transparent w-full focus:bg-transparent border-0 rounded-none h-[47px] md:h-[52px] indent-0 placeholder:text-[15px] placeholder:text-xl pb-0 outline-none" 
                             {...register("password")}
+
                             />
+                            {!showPassword ? <AiOutlineEyeInvisible className="cursor-pointer text-[1.3rem]" onClick={handleClick} />: <AiOutlineEye className="cursor-pointer text-[1.3rem]" onClick={handleClick} />}
+                            </span>
                             {errors.password && <span className="text-[.7rem] text-rose-600">{errors.password.message}</span>}
+                            </div>
+                            <div className="flex justify-between items-center text-[15px]">
+                                <span className="flex items-center space-x-2 cursor-pointer">
+                                    <input id="remember" type="checkbox" />
+                                    <label className="cursor-pointer" htmlFor="remember">Remember me?</label>
+                                </span>
+                                <span className="text-[#6FC78F]"><a href="#">Forgot password?</a></span>
+                            </div>
 
                             <div className="mt-8">
                                 <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">Sign Up</button>
-                                <p className="text-[.8rem] md:text-[18px] text-center text-[#A0A0A1] hover:text-blue-900 duration-500">
-                                    <Link to={"/Login"}>
-                                        Already have an account? <span className="text-darker-gray hover:text-blue-900">Login</span>
-                                    </Link>
-                                </p>
                             </div>
-                        </section>
+                        </div>
                     </form>
+                </div>
                 </div>
             </div>
         </div>

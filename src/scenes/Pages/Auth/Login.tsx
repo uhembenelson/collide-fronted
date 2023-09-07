@@ -7,6 +7,11 @@ import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/store/features/Api";
 import { useState } from "react";
+import signImg from "@/assets/signin-img.png";
+import {AiOutlineMail } from "react-icons/ai";
+import {RiLockPasswordLine} from "react-icons/ri";
+import {AiOutlineEyeInvisible} from "react-icons/ai";
+import {AiOutlineEye} from "react-icons/ai";
 
 
 type FormData = {
@@ -17,6 +22,13 @@ type FormData = {
 }
 
 const Index = ()=>{
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClick = () => {
+        setShowPassword((prevState) => {
+            return !prevState;
+        })
+    }
+
     const navigate = useNavigate();
     const [errorMsg, SetErrorMsg] = useState("")
     const schema: ZodType<FormData> = z.object({
@@ -46,14 +58,16 @@ const Index = ()=>{
        
     }
     return(
-        <div style={{backgroundImage: `url(${bg})`}} className="mt-[4rem] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen items-center">
-            <div className="flex flex-col md:flex-row items-center md:items-start justify-around md:mx-auto md:w-5/6 gap-16 px-5 ">
-                <div className=" md:w-1/2 md:mt-20 mt-20">
-                    <img src={africa} alt=""/>
+        <div className="mt-[4rem] bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-auto pb-10">
+            <div className="md-h-[757px] px-2 md:px-0 overflow-hidden h-fit w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-5/6">
+            <div className="bg-[#0F1318] h-fit flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
+            <div className=" md:w-1/2 h-full overflow-hidden rounded-none md:rounded-[50px]">
+                    <img src={signImg} alt=""/>
                 </div>
-                <div className=" w-full md:w-1/3 md:mt-[150px] md:mb-0 mb-20">
-                    <form onSubmit={handleSubmit(submitData)} className="flex flex-col space-y-3 text-white md:text-center">
-                        <h2 className="text-[30px] md:text-[50px] text-center font-semibold font-[kufam]">Hello ! <br /> Welcome back</h2>
+                <div className=" w-full md:w-1/3 mt-10 md:mt-0 md:mb-0 mb-20">
+                <form onSubmit={handleSubmit(submitData)} className="flex px-5 md:px-0 flex-col space-y-3 text-white md:text-center">
+                <h2 className="text-[30px] md:text-[40px] font-[poppins] self-center md:self-start text-center font-semibold">Sign In</h2>
+                <p className="text-[15px] px-4 md:px-0 pb-10 self-center md:self-start text-start">Don't have an account? <Link className="text-[#6FC78F]" to={"/register"}>Click here</Link> to create one</p>
                         <section className="flex flex-col gap-4">
                         {error && 
                         <div className="bg-white h-10 flex items-center gap-5 rounded-sm">
@@ -63,39 +77,49 @@ const Index = ()=>{
                         
                         }
                         {errors.email && <span className="text-[.7rem] text-rose-600 text-left">{errors.email.message}</span>}
+                        <div className="flex flex-col items-start mb-4">
+                            <label className="flex flex-col items-start" htmlFor="email">Email</label>
+                            <span className="flex items-center space-x-2 border-b-[2px] border-b-[#a0a0a1] w-full text-[#A0A0A1] text-[15px]">
+                            <AiOutlineMail />
                             <input 
-                            type="text" 
-                            placeholder="Email address" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray"
-                            {...register("email")} 
+                            type="email" 
+                            id="email" 
+                            placeholder="Enter your email address here" 
+                            className="bg-transparent w-full border-0 rounded-none h-[47px] md:h-[52px] indent-0 placeholder:text-[15px] placeholder:text-xl pb-0 outline-none" 
+                            {...register("email")}
                             />
+                            </span>
+                            </div>
                            
                            {errors.password && <span className="text-[.7rem] text-rose-600 text-left mt-3">{errors.password.message}</span>}
+                           <div className="flex flex-col items-start mb-4">
+                            <label className="flex flex-col items-start" htmlFor="password">Password</label>
+                            <span className="flex items-center space-x-2 border-b-[2px] border-b-[#a0a0a1] w-full text-[#A0A0A1] text-[15px]">
+                            <RiLockPasswordLine />
                             <input 
-                            type="password" 
-                            id="" 
-                            placeholder="********" 
-                            className="rounded-[7px] h-[47px] md:h-[52px] indent-4 placeholder:text-[1rem] placeholder:text-xl outline-none text-gray" 
+                            type={showPassword ? "text" : "password"}
+                            id="password" 
+                            placeholder="Enter your password here" 
+                            className="bg-transparent w-full focus:bg-transparent border-0 rounded-none h-[47px] md:h-[52px] indent-0 placeholder:text-[15px] placeholder:text-xl pb-0 outline-none" 
                             {...register("password")}
                             />
-                            
-
-                            <p className="text-[.8rem] md:text-[18px] text-end mb-5 text-[#A0A0A1] hover:text-blue-900 duration-500">
-                                    <Link to={"/Login"}>
-                                        Recover Password?
-                                    </Link>
-                            </p>
+                            {!showPassword ? <AiOutlineEyeInvisible className="cursor-pointer text-[1.3rem]" onClick={handleClick} />: <AiOutlineEye className="cursor-pointer text-[1.3rem]" onClick={handleClick} />}
+                            </span>
+                            </div>
+                            <div className="flex justify-between items-center text-[15px]">
+                                <span className="flex items-center space-x-2 cursor-pointer">
+                                    <input id="remember" type="checkbox" />
+                                    <label className="cursor-pointer" htmlFor="remember">Remember me?</label>
+                                </span>
+                                <span className="text-[#6FC78F]"><a href="#">Forgot password?</a></span>
+                            </div>
 
                             <div>
                                 <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">LOGIN</button>
-                                <p className="text-[.8rem] md:text-[18px] text-center text-[#A0A0A1] hover:text-blue-900 duration-500">
-                                    <Link to={"/Register"}>
-                                        Don't have an account? <span className="text-darker-gray hover:text-blue-900">Create Account</span>
-                                    </Link>
-                                </p>
                             </div>
                         </section>
                     </form>
+                </div>
                 </div>
             </div>
         </div>
