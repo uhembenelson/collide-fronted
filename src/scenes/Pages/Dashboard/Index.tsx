@@ -1,8 +1,22 @@
-const Dashboard =()=>{
-    return(
-        <div>this is my dashbaord</div>
-    )
+import React from 'react';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from '@/scenes/home';
+import Courses from './components/Courses';
+import Settings from './components/Settings';
+
+const Index = () => {
+  return (
+    // <BrowserRouter>
+    //     <Routes>
+    //         <Route path='/' element={<Home />} />
+    //         <Route path='courses' element={<Courses />}  />
+    //         <Route path='settings' element={<Settings />} />
+    //     </Routes>
+    // </BrowserRouter>
+    <div>
+        Dashboard
+    </div>
+  )
 }
 
-
-export default Dashboard
+export default Index
