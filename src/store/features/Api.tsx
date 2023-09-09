@@ -7,8 +7,8 @@ export const CollideApi = createApi({
   reducerPath: 'CollideApi',
   baseQuery: fetchBaseQuery({
     // http://localhost:5000
-    //https://rich-gold-goldfish.cyclic.app
-    baseUrl: "http://localhost:5000",
+    //https://wild-gray-oyster-vest.cyclic.cloud
+    baseUrl: "https://wild-gray-oyster-vest.cyclic.cloud",
     prepareHeaders: (headers) => {
       headers.set(
         "Authorization",
@@ -16,6 +16,8 @@ export const CollideApi = createApi({
       );
     },
   }),
+
+  tagTypes: ["User"],
 
   endpoints: (builder) => ({
    // tagTypes : ["User"],
@@ -34,8 +36,15 @@ export const CollideApi = createApi({
         }),
        // invalidatesTags: ["User"],
       }),
+
+      getCurrentUser: builder.query({
+        query: () => ({
+          url: "/user/api/v1/current-user",
+        }),
+        providesTags: ["User"],
+      }),
   }),
 })
 
 
-export const { useLoginMutation, useSignupMutation } = CollideApi
+export const { useLoginMutation, useSignupMutation, useGetCurrentUserQuery } = CollideApi

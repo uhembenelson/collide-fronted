@@ -7,7 +7,7 @@ import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@/store/features/Api";
 import { useState } from "react";
-import signImg from "@/assets/signin-img.png";
+import signImg from "@/assets/in.png";
 import {AiOutlineMail } from "react-icons/ai";
 import {RiLockPasswordLine} from "react-icons/ri";
 import {AiOutlineEyeInvisible} from "react-icons/ai";
@@ -62,10 +62,12 @@ const Index = ()=>{
 
              <div className=" mt-[50px] px-2 md:px-0 overflow-hidden  w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-4/6">
 
-            <div className="bg-[#0F1318]  gap-10 flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
-            <div className=" h-[50%] md:w-[50%]  overflow-hidden rounded-none md:rounded-[50px]">
+            <div className="bg-[#0F1318]  gap-[50px] flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
+            <div className=" h-[30%] md:w-[45%]  overflow-hidden rounded-none md:rounded-l-[50px]">
                     <img src={signImg} alt=""/>
                 </div>
+
+
                 <div className=" w-full md:w-1/3 mt-10 md:mt-0 md:mb-0 mb-20 ">
                 <form onSubmit={handleSubmit(submitData)} className="flex px-5 md:px-0 flex-col space-y-3 text-white md:text-center">
                 <h2 className="text-[30px] md:text-[40px] font-[poppins] self-center md:self-start text-center font-semibold">Sign In</h2>

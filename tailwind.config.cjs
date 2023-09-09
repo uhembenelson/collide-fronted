@@ -16,7 +16,8 @@ module.exports = {
         "from":"#6FC78F",
         "to":"#A0EC25",
         "bg2":'#1E1E1E',
-        "bg3":'#232323'
+        "bg3":'#232323',
+        
       },
       backgroundImage: (theme) => ({
         "gradient-yellowred":

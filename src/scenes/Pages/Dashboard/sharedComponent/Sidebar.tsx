@@ -9,33 +9,54 @@ import {AiFillSetting} from "react-icons/ai";
 
 const Sidebar = () => {
   return (
-    <div className='text-[#0F1318] hidden md:block p-6 h-[100%] w-fit bg-[#ffffff]'>
-      <div className='w-[374px] h-[1064px] bg-[#FFFFFF] space-y-5'>
-        <img className='w-[152px]' src={logo} alt="" />
-        <div className='flex flex-col space-y-2'>
-        <p className='flex items-center space-x-2 text-[#FFFAFA] text-[18px] bg-[#6FC78F] w-[272px] h-[60px] rounded-[5px] pl-4 cursor-pointer'>
-            <PiGraduationCapBold />
+    <div className='text-[#0F1318] hidden md:block py-10  w-fit bg-[#ffffff]'>
+      <div className='w-5/6 h-screen bg-[#FFFFFF] space-y-5'>
+        <img className='w-[152px] ml-5 mb-5' src={logo} alt="" />
+        <div className='flex flex-col space-y-5 '>
+
+        <div className='flex items-center space-x-3  text-[#0F1318] text-[18px]  w-[272px] h-[50px] bg-light-gray  cursor-pointer'>
+           <p className='h-full  bg-[#6FC78F] w-2 mr-3'></p>
+           <div className='flex  space-x-2 '>
+           <PiGraduationCapBold />
             <span>Home</span>
-        </p>
-        <p className='flex items-center space-x-2 text-[#0F1318] text-[18px] w-[272px] h-[60px] rounded-[5px] pl-4 hover:bg-[#6FC78F] duration-500 cursor-pointer'>
-            <MdOutlineDashboard />
+           </div>
+        </div>
+
+        {/* <div className='flex items-center space-x-3  text-[#0F1318] text-[18px]  w-[272px] h-[50px] hover:bg-light-gray  cursor-pointer'>
+           <p className='h-full   w-2 mr-3 hover:bg-green'></p>
+           <div className='flex  space-x-2 '>
+           <MdOutlineDashboard />
             <span>Dashboard</span>
-        </p>
+           </div>
+        </div> */}
 
-        <p className='flex items-center space-x-2 text-[#0F1318] text-[18px] w-[272px] h-[60px] rounded-[5px] pl-4 hover:bg-[#6FC78F] duration-500 cursor-pointer'>
-            <LuBookCopy />
+
+        <div className='flex items-center space-x-3  text-[#0F1318] text-[18px]  w-[272px] h-[50px] hover:bg-light-gray  cursor-pointer'>
+           <p className='h-full   w-2 mr-3 hover:bg-green'></p>
+           <div className='flex  space-x-2 '>
+           <LuBookCopy />
             <span>Courses</span>
-        </p>
+           </div>
+        </div>
 
-        <p className='flex items-center space-x-2 text-[#0F1318] text-[18px] w-[272px] h-[60px] rounded-[5px] pl-4 hover:bg-[#6FC78F] duration-500 cursor-pointer'>
-            <MdOutlineAccountBalanceWallet />
+        <div className='flex items-center space-x-3  text-[#0F1318] text-[18px]  w-[272px] h-[50px] hover:bg-light-gray  cursor-pointer'>
+           <p className='h-full   w-2 mr-3 hover:bg-green'></p>
+           <div className='flex  space-x-2 '>
+           <MdOutlineAccountBalanceWallet />
             <span>Wallet</span>
-        </p>
+           </div>
+        </div>
 
-        <p className='flex items-center space-x-2 text-[#0F1318] text-[18px] w-[272px] h-[60px] rounded-[5px] pl-4 hover:bg-[#6FC78F] duration-500 cursor-pointer'>
-            <AiFillSetting />
+        <div className='flex items-center space-x-3  text-[#0F1318] text-[18px]  w-[272px] h-[50px] hover:bg-light-gray  cursor-pointer'>
+           <p className='h-full   w-2 mr-3 hover:bg-green'></p>
+           <div className='flex  space-x-2 '>
+           <AiFillSetting />
             <span>Settings</span>
-        </p>
+           </div>
+        </div>
+       
+
+       
         </div>
 
       </div>
