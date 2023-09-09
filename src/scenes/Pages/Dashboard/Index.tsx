@@ -1,8 +1,11 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from '@/scenes/home';
-import Courses from './components/Courses';
-import Settings from './components/Settings';
+// import {BrowserRouter, Routes, Route} from "react-router-dom";
+// import Home from '@/scenes/home';
+// import Courses from './components/Courses';
+// import Settings from './components/Settings';
+import Sidebar from './sharedComponent/Sidebar';
+import DashboardNav from './sharedComponent/DashboardNav';
+import "./d-style.css"
 
 const Index = () => {
   return (
@@ -13,8 +16,14 @@ const Index = () => {
     //         <Route path='settings' element={<Settings />} />
     //     </Routes>
     // </BrowserRouter>
-    <div>
-        Dashboard
+    <div className='mt-20 w-full min-h-[100vh] flex p-3'>
+      <div>
+        <Sidebar />
+      </div>
+      <div className='w-full'>
+        <DashboardNav />
+        <div></div>
+      </div>
     </div>
   )
 }
