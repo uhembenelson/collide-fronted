@@ -58,15 +58,15 @@ const Index =()=>{
     }
 
     return(
-        <div className="mt-[4rem] bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-auto pb-10">
-            <div className="md-h-[757px] px-2 md:px-0 overflow-hidden h-fit w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-5/6">
-                <div className="bg-[#0F1318] h-fit flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
-                <div className=" md:w-1/2 h-full overflow-hidden rounded-none md:rounded-[50px]">
+        <div className=" bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen pb-10 mt-5">
+            <div className=" mt-[60px] px-2 md:px-0 overflow-hidden h-fit w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-4/6">
+                <div className="bg-[#0F1318]  gap-20 flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
+                <div className="  md:w-[47%] overflow-hidden rounded-none md:rounded-[50px]">
                     <img src={signImg} alt="" className="overflow-hidden"/>
                 </div>
-                <div className=" w-full md:w-1/3 mt-10 md:mt-0 md:mb-0 mb-20">
+                <div className=" w-full md:w-1/3 md:mt-0 md:mb-0 mb-20 ">
                     <form onSubmit={handleSubmit(submitData)} className="flex flex-col space-y-3 text-white md:text-center">
-                        <h2 className="text-[30px] md:text-[40px] font-[poppins] self-center md:self-start text-center font-semibold">Sign Up</h2>
+                        <h2 className="text-[30px] md:text-[40px] font-[poppins] self-center md:self-start text-center font-semibold ">Sign Up</h2>
                         <p className="text-[15px] px-4 md:px-0 pb-10 self-center md:self-start text-start">Already have an account? <Link className="text-[#6FC78F]" to={"/Login"}>Click here</Link> to sign in</p>
                         {error && 
                         <div className="bg-white h-10 flex items-center gap-5 rounded-sm">

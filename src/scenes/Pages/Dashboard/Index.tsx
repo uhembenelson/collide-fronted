@@ -9,22 +9,19 @@ import "./d-style.css"
 
 const Index = () => {
   return (
-    // <BrowserRouter>
-    //     <Routes>
-    //         <Route path='/' element={<Home />} />
-    //         <Route path='courses' element={<Courses />}  />
-    //         <Route path='settings' element={<Settings />} />
-    //     </Routes>
-    // </BrowserRouter>
-    <div className='mt-20 w-full min-h-[100vh] flex p-3'>
-      <div>
-        <Sidebar />
-      </div>
-      <div className='w-full'>
-        <DashboardNav />
-        <div></div>
-      </div>
+    <>
+    {/* <BrowserRouter>
+        <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='courses' element={<Courses />}  />
+            <Route path='settings' element={<Settings />} />
+        </Routes>
+    </BrowserRouter> */}
+    <div>
+        Dashboard
     </div>
+    </>
+    
   )
 }
 

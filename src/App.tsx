@@ -24,7 +24,8 @@ import Dashboard from "../src/scenes/Pages/Dashboard/Index"
 function App() {
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Root/>}>
+    <>
+     <Route path="/" element={<Root/>}>
       <Route path="/details" element={<Details/>}/>
       <Route index element={<Landing/> }/>
       <Route path="/home" element={<Landing/>}/>
@@ -32,11 +33,13 @@ const router = createBrowserRouter(
       <Route path="our-team" element={<Team/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="register" element={<Register/>}/>
-      <Route path="Dashboard" element={<Dashboard/>}/>
-
-
      
     </Route>
+    <Route>
+       <Route path="Dashboard" element={<Dashboard/>}/>
+    </Route>
+    </>
+   
   )
 )
 return (
