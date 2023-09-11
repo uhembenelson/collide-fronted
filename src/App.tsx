@@ -16,13 +16,18 @@ import Team from "../src/scenes/Pages/Team/Index"
 import Login from "../src/scenes/Pages/Auth/Login"
 import Register from "../src/scenes/Pages/Auth/Register"
 import Dashboard from "../src/scenes/Pages/Dashboard/Index"
-
+import { useLoginMutation, useGetCurrentUserQuery } from "@/store/features/Api";
 
 
 
 
 
 function App() {
+
+
+  const { data, error } = useGetCurrentUserQuery()
+  console.log("this is user", data, "thiss is error")
+
  
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +43,7 @@ const router = createBrowserRouter(
      
     </Route>
     <Route>
-       <Route path="Dashboard" element={<Dashboard/>}/>
+       <Route path="Dashboard" element={ <Dashboard/>}/>
     </Route>
     </>
    

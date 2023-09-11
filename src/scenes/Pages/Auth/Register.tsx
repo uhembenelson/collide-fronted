@@ -145,7 +145,11 @@ const Index =()=>{
                             </div>
 
                             <div className="mt-8">
-                                <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">Sign Up</button>
+                                <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">
+                                {
+                                        isChecking ?   <span>Loading...</span> : <span>Sign Up</span>
+                                    }
+                                </button>
                             </div>
                         </div>
                     </form>

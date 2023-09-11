@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import africa from "@/assets/africa.png";
 import bg from "@/assets/bgb.png";
 import { Link , useNavigate } from "react-router-dom";
 import {z, ZodType} from "zod";
 import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoginMutation } from "@/store/features/Api";
+import { useLoginMutation, useGetCurrentUserQuery} from "@/store/features/Api";
 import { useState } from "react";
 import signImg from "@/assets/in.png";
 import {AiOutlineMail } from "react-icons/ai";
@@ -21,7 +21,12 @@ type FormData = {
 
 }
 
+
+
+
+
 const Index = ()=>{
+   
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClick = () => {
         setShowPassword((prevState) => {
@@ -36,7 +41,12 @@ const Index = ()=>{
         password: z.string().min(5).max(30)
         
     })
-    const [login, { isLoading: isChecking , error}] = useLoginMutation();
+    const [login, { isLoading: isChecking , error, data: userdata}] = useLoginMutation();
+    const {data} = useGetCurrentUserQuery()
+
+ 
+   
+   
 
     const {register, handleSubmit, formState: {errors}} = useForm<FormData>({resolver: zodResolver(schema)})
 
@@ -50,6 +60,8 @@ const Index = ()=>{
             console.log("this is token",response?.data?.accessToken)
             localStorage.setItem("accessToken", response?.data?.accessToken);
             navigate("/dashboard");
+
+              
         }
        
     }catch{
@@ -119,7 +131,12 @@ const Index = ()=>{
                             </div>
 
                             <div>
-                                <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">LOGIN</button>
+                                <button className="h-[47px] md:h-[52px] mb-2 bg-[#6FC78F] w-full rounded-[7px] font-semibold text-[1rem] md:text-[20px] hover:scale-95 duration-500">
+                                    {
+                                        isChecking ?   <span>Loading...</span> : <span>Sign In</span>
+                                    }
+                                   
+                                </button>
                             </div>
                         </section>
                     </form>

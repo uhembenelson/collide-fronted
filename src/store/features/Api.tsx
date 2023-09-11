@@ -37,7 +37,7 @@ export const CollideApi = createApi({
        // invalidatesTags: ["User"],
       }),
 
-      getCurrentUser: builder.query({
+      getCurrentUser: builder.query<any,void>({
         query: () => ({
           url: "/user/api/v1/current-user",
         }),
