@@ -8,30 +8,31 @@ import DashboardNav from './sharedComponent/DashboardNav';
 import "./d-style.css"
 import CourseCard from '../../courseCard/CourseCard'
 import { useGetCurrentUserQuery } from "@/store/features/Api";
-
+import PaymentForm from './components/PaymentForm';
+import { useNavigate } from 'react-router-dom';
 
 
 const Index = () => {
- // const { data: currentUser, isError } = useGetCurrentUserQuery();
+  const navigate = useNavigate();
+  const { data, error } = useGetCurrentUserQuery()
+
   return (
-    // <BrowserRouter>
-    //     <Routes>
-    //         <Route path='/' element={<Home />} />
-    //         <Route path='courses' element={<Courses />}  />
-    //         <Route path='settings' element={<Settings />} />
-    //     </Routes>
-    // </BrowserRouter>
-    <div className=' w-full min-h-[100vh] flex  bg-light-gray'>
-      <div>
-        <Sidebar />
-      </div>
-      <div className='w-full'>
-        <DashboardNav />
-        <div className='px-10 py-10 flex-wrap flex gap-10'>
-         <CourseCard />
-        </div>
-      </div>
+   <>
+   {
+    data?  <div className=' w-full min-h-[100vh] flex  bg-light-gray'>
+    <div>
+      <Sidebar />
     </div>
+    <div className='w-full'>
+      <DashboardNav />
+      <div className='md:px-10 md:py-10 px-5 py-5 flex-wrap flex md:gap-10 gap-5'>
+       <CourseCard />
+      </div>
+     
+    </div>
+  </div> : navigate('/login')
+   }
+   </>
   )
 }
 

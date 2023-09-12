@@ -26,7 +26,7 @@ function App() {
 
 
   const { data, error } = useGetCurrentUserQuery()
-  console.log("this is user", data, "thiss is error")
+ 
 
  
 const router = createBrowserRouter(

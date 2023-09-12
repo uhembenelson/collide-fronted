@@ -43,8 +43,15 @@ export const CollideApi = createApi({
         }),
         providesTags: ["User"],
       }),
+      registerCourse: builder.mutation({
+        query: (payload) => ({
+          url: "/courses/api/v1/register-a-course",
+          method: "POST",
+          body: payload,
+        }),
+      }),
   }),
 })
 
 
-export const { useLoginMutation, useSignupMutation, useGetCurrentUserQuery } = CollideApi
+export const { useLoginMutation, useSignupMutation, useGetCurrentUserQuery, useRegisterCourseMutation } = CollideApi

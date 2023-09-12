@@ -10,11 +10,19 @@ import In from "@/assets/i.png";
 import Fb from "@/assets/f.png";
 import Ig from "@/assets/i.png";
 import Nels from "@/assets/nelsonn.png"
-
+import { Link, useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "@/store/store"
 import { addCourseDetail } from "@/store/features/CourseDetails"
 const Index =()=>{
+  const navigate= useNavigate();
+  const dispatch = useAppDispatch()
+
+  const gotoDetails = (item: any)=>{
+    console.log("this is data here", item)
+    dispatch(addCourseDetail(item))
+    navigate('/details')
+    }
 
 
     const data = [ 
@@ -476,13 +484,18 @@ const Index =()=>{
       {
         data.map((item)=>{
             return(
-                <div className="bg-[#122015] w-1/4 rounded-2xl p-10">
+                <div className="bg-[#122015] md:w-1/4 rounded-2xl p-5 w-full">
                 <div className="">
                     <img src={item.imageURL} alt="" className="h-[60px] w-full bg-cover " style={{borderRadius:10}} />
                 </div>
                 <div className=" mt-5 flex-end">
                     <p className="text-white text-[18px] font-semibold">{item.category}</p>
                 </div>
+                <button 
+                onClick={()=> gotoDetails(item)}
+                 className="px-5 bg-white py-2 mt-5 rounded-[5px] w-full">
+                  Explore
+                  </button>
             </div>
             )
         })

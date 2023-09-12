@@ -6,9 +6,9 @@ import {BsPerson} from "react-icons/bs";
 
 const DashboardNav = () => {
   return (
-    <div>
-      <div className='flex items-center justify-between h-[74px] w-full text-[14px] px-10 mt-5'>
-          <form action="" className='flex items-center bg-white h-[50px] rounded-[5px] w-1/3 hover:shadow-md duration-500'>
+    <div className='hidden md:block'>
+      <div className='flex items-center justify-between h-[74px] w-full text-[14px] md:px-10 mt-5'>
+          <form action="" className=' flex items-center bg-white h-[50px] rounded-[5px] w-1/3 hover:shadow-md duration-500'>
             <AiOutlineSearch className='text-[#A0A0A1] w-[24px] bg-white h-[24px] m-2' />
             <input type="search" className='bg-transparent outline-none text-gray border-0 indent-2 w-full ' placeholder='Seach for courses here' />
             <button className='bg-[#6FC78F] h-full px-10  rounded-r-[5px] duration-500 text-white '>Search</button>

@@ -5,7 +5,7 @@ import { collection, addDoc, doc } from "firebase/firestore";
 import Logo2 from "@/assets/logo2.png";
 import { PaystackButton } from "react-paystack";
 import Modalc from "../../../modal/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 import Tw from "@/assets/t.png";
@@ -26,8 +26,12 @@ type Props = {
   children: any;
   data: any;
 };
+import { useGetCurrentUserQuery, useRegisterCourseMutation } from "@/store/features/Api";
 
 const CourseCard = ({ onClose, children, data }: Props) => {
+  const navigate = useNavigate()
+  const { data:currentUser, error } = useGetCurrentUserQuery()
+  const [registerCourse, {isError, isLoading, isSuccess, isUninitialized, data:result}] = useRegisterCourseMutation()
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [phone_number, setPhone_number] = useState("");
@@ -39,12 +43,24 @@ const CourseCard = ({ onClose, children, data }: Props) => {
   const [loading, setLoading] = useState(false);
   const [courseid, setCourseId] = useState("");
   const [showm, setShowm] = useState(true);
-
-  console.log("checkdata", data);
-
+  const [studyMode, setStudyMode] = useState("")
+  const [amountPaid, setAmountPaid] = useState("")
+  const [paymentType, setPaymentType] = useState("")
+  const [fullPayment, setFullpayment] = useState(false)
+  const [price, setPrice] = useState(25000)
+  const [courseFee, setCourseFee] = useState("")
+  const [balance, setBalance] = useState("")
+  const [registeredCourse, setRegisteredCourse] = useState([])
+  const [msg, setMsg] = useState("")
+  console.log(studyMode)
+    
   const showy = () => {
     setShowm(false);
+   
   };
+
+
+
 
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -70,21 +86,42 @@ const CourseCard = ({ onClose, children, data }: Props) => {
   // ]
   const enroll = async () => {
     //
-
     const payload = {
-      fullname,
-      email,
-      phone_number,
-      course,
-    };
-    const collectionRef = collection(db, "users");
-    setLoading(true);
-    console.log("working here");
-    const docRef = await addDoc(collectionRef, payload);
-    if (docRef.id) {
-      setLoading(false);
-      setCourseId(docRef.id);
+      studyMode,
+      amountPaid:price,
+      paymentType,
+      status:"active",
+      courseFee: data.price,
+      balance: parseInt(data.price) * data.duration - price,
+      registeredCourse: data
     }
+
+    try{
+      setLoading(true);
+      const response: any = await  registerCourse(payload)
+      console.log("this load",response)
+      if(response.data.msg === "Course registerd"){
+        setLoading(false);
+        setMsg(response.data.msg)
+      }
+
+    }catch(error){
+      alert("")
+    }
+
+
+   
+
+
+
+    // const collectionRef = collection(db, "users");
+    // setLoading(true);
+    // console.log("working here");
+    // const docRef = await addDoc(collectionRef, payload);
+    // if (docRef.id) {
+    //   setLoading(false);
+    //   setCourseId(docRef.id);
+    // }
   };
 
   // you can call this function anything
@@ -102,9 +139,11 @@ const CourseCard = ({ onClose, children, data }: Props) => {
   };
   const config = {
     reference: new Date().getTime().toString(),
-    email: email,
-    amount: 2500000, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
-    publicKey: "pk_live_1d303d36ff533def3dfa814bbf3bd69664fa84c5",
+    email:currentUser?.email,
+    amount: price * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
+    // pk_test_299940f7bef87eb2b0d1e584e89665eec91be4f9
+    // pk_live_1d303d36ff533def3dfa814bbf3bd69664fa84c5
+    publicKey: "pk_test_299940f7bef87eb2b0d1e584e89665eec91be4f9",
   };
 
   const componentProps = {
@@ -123,7 +162,9 @@ const CourseCard = ({ onClose, children, data }: Props) => {
               <div className="mt-6 flex  md:ml-[20%]">
                 <div
                   onClick={() => {
-                    setShowm(true);
+                    setShowm(true),
+                    setPrice(parseInt(item.price)),
+                    setPaymentType("partTime")
                   }}
                   className={`p-3 ${
                     showm ? "bg-green text-white " : "bg-white text-black "
@@ -133,7 +174,13 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                 </div>
 
                 <div
-                  onClick={showy}
+                  onClick={()=>{showy(), 
+                    setPrice(item.price * item.duration -
+                      ((parseInt(item.price) * parseInt(item.duration)) /
+                        100) *
+                        10),
+                        setPaymentType("fulltime")
+                  }}
                   className={`p-3 ${
                     !showm ? "bg-green text-white " : "bg-white text-black "
                   }  cursor-pointer rounded-r-[5px] text-[14px] text-white`}
@@ -169,14 +216,18 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         Location : {item.location}
                       </div>
                       <div className="text-[10px] font-semibold text-black  md:text-[13px]">
-                        {" "}
-                        Price : {formatter.format(parseInt(item.price))}
+                        Price : {formatter.format(parseInt(item.price)) }
                       </div>
                     </div>
+
+
                     <div className=" ">
                       {item?.status === "Enroll" ? (
                         <button
-                          onClick={() => setOpen(true)}
+                          onClick={() => {
+                            
+                            currentUser? setOpen(true) : navigate('/login')
+                          }}
                           className="mt-5 flex w-full flex-row justify-center rounded-br-md rounded-bl-md bg-green py-5 px-5  "
                         >
                           <div className="flex gap-5">
@@ -199,6 +250,9 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         </div>
                       )}
                     </div>
+
+
+
                   </div>
                 </div>
               ) : (
@@ -232,13 +286,28 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                             ((parseInt(item.price) * parseInt(item.duration)) /
                               100) *
                               10
-                        )}{" "}
+                        )
+                        
+                        }{" "}
                       </div>
                     </div>
+
+
+
                     <div className=" ">
                       {item?.status === "Enroll" ? (
                         <button
-                          onClick={() => setOpen(true)}
+                          onClick={() =>{
+                            currentUser?  setOpen(true) :  navigate('/login')
+                           
+
+                            
+                             }
+                            
+                            
+                           
+                          
+                          }
                           className="mt-5 flex w-full flex-row justify-center rounded-br-md rounded-bl-md bg-green py-5 px-5  "
                         >
                           <div className="flex gap-5">
@@ -261,6 +330,9 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         </div>
                       )}
                     </div>
+
+
+
                   </div>
                 </div>
               )}
@@ -298,73 +370,42 @@ const CourseCard = ({ onClose, children, data }: Props) => {
             setCourseId("");
           }}
         >
-          {courseid ? (
+          {msg ? (
             <div>
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center ">
                 <img src={Logo2} className="w-[60px] rounded-[360px]" />
               </div>
               <div className="mt-6 text-center text-[14px] text-gray-400">
-                Thank you for registering for collode.africa we look forward to
-                seeing you soon, Our office is conveniently located at No 20
-                Church Street, Jos, call us on +23408106119178 or email us
+                Thank you for registering, classes start for both online and onsite users on the 3rd of October, we look forward to
+                seeing you soon,  Our office is conveniently located at N0: 237, JOS SOUTH SHOPPING COMPLEX ABATTOIR. JOS PLATEAU, call us on +23408106119178 or email us
                 help@collide.africa for info
               </div>
             </div>
           ) : (
-            <div className="text-black">
+            <div className="text-black rounded-sm">
               <div className="flex items-center justify-center">
                 <img src={Logo2} className="w-[60px] rounded-[360px]" />
               </div>
               <div className="mt-3 text-[14px] text-red">{errormsg}</div>
+            
               <div className="mt-3">
-                <input
-                  value={fullname}
-                  onChange={(e) => {
-                    setFullname(e.target.value);
-                  }}
-                  placeholder="Full name"
-                  className="bg-gray-50 h-[45px] w-full rounded-[5px] border border-gray-400 p-3 text-gray-400 focus:border-green focus:ring-green"
-                />
+                <label >Select your study mode </label>
+                <select 
+                value={studyMode} // ...force the select's value to match the state variable...
+                onChange={e => setStudyMode(e.target.value)} 
+                className="bg-gray-50 h-[45px] w-full rounded-[5px] border border-gray-400 p-3 text-gray-400 focus:border-green focus:ring-green mt-2">
+                  <option value="onsite" >OnSite</option>
+                  <option value="online" >Online</option>
+                </select>
+               
               </div>
-              <div className="mt-3">
-                <input
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  placeholder="Email address"
-                  className="bg-gray-50 h-[45px] w-full rounded-[5px] border border-gray-400 p-3 text-gray-400 focus:border-green focus:ring-green"
-                />
-              </div>
-              <div className="mt-3">
-                <input
-                  value={phone_number}
-                  onChange={(e) => {
-                    setPhone_number(e.target.value);
-                  }}
-                  placeholder="Phone number"
-                  className="bg-gray-50 h-[45px] w-full rounded-[5px] border border-gray-400 p-3 text-gray-400 focus:border-green focus:ring-green"
-                />
-              </div>
+             
               <PaystackButton
                 className="hover mt-4 h-[45px] w-full rounded-[5px] bg-green text-white"
                 {...componentProps}
               />
 
-              <div className="mt-3">
-                <p className="text-[12px] text-gray-400 ">
-                  Thank you so much for expressing your interest in joining our
-                  Frontend Development Summer Classes. We are thrilled to know
-                  that you are eager to embark on this learning journey with us
-                </p>
-                <p className="mt-3 text-[12px] text-red">
-                  Notice we want to clarify that these classes are currently
-                  available only onsite and exclusively for individuals residing
-                  in Jos, Plateau State. Our office is conveniently located at
-                  No 20 Church Street, Jos, call us on +23408106119178 or email
-                  us help@collide.africa for info
-                </p>
-              </div>
+              
             </div>
           )}
         </Modalc>

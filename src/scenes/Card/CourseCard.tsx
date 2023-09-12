@@ -11,7 +11,7 @@ import { addCourseDetail } from "@/store/features/CourseDetails"
 import Mali from "@/assets/mali.png";
 
 import Tw from "@/assets/t.png";
-import In from "@/assets/i.png";
+import In from "@/assets/lg.png";
 import Fb from "@/assets/f.png";
 import Ig from "@/assets/i.png";
 import Nels from "@/assets/nelsonn.png"
@@ -620,7 +620,7 @@ const enroll = async () =>{
                              
                           </div>
 
-                          <div className=" ">
+                          {/* <div className=" ">
                             
                             {
                               item?.status === "Enroll" ? 
@@ -647,7 +647,7 @@ const enroll = async () =>{
   
                           </div>
                             }
-                          </div>
+                          </div> */}
                           </div>
                      
                           <div className="cursor-pointer " onClick={()=>{
@@ -718,13 +718,13 @@ const enroll = async () =>{
                
                 
 
-                <div className="mt-3">
+                {/* <div className="mt-3">
                     <p className="text-[12px] text-gray-400 ">Thank you so much for expressing your interest in joining our Frontend Development Summer 
                         Classes. We are thrilled to know that you are eager to embark on this learning journey with us</p>
                         <p className="text-red text-[12px] mt-3">Notice we want to clarify that these classes are 
                         currently available only onsite and exclusively for individuals residing in Jos,
                         Plateau State. Our office is conveniently located at No 20 Church Street, Jos, call us on +23408106119178 or email us help@collide.africa for info</p> 
-                </div>
+                </div> */}
                 
               
                 

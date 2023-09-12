@@ -12,6 +12,7 @@ import {AiOutlineMail } from "react-icons/ai";
 import {RiLockPasswordLine} from "react-icons/ri";
 import {AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 
 
 type FormData = {
@@ -59,9 +60,7 @@ const Index = ()=>{
         if(response?.data?.accessToken){
             console.log("this is token",response?.data?.accessToken)
             localStorage.setItem("accessToken", response?.data?.accessToken);
-            navigate("/dashboard");
-
-              
+            navigate("/dashboard");   
         }
        
     }catch{
@@ -70,7 +69,17 @@ const Index = ()=>{
        
     }
     return(
-        <div className=" bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen pb-10">
+<>
+<Helmet>
+    
+
+      <title>Leaning</title>
+      <meta name="description" content="Log in to Collide Africa to begin your journey into tech"></meta>
+      <link rel="canonical" href="/login"/>
+    </Helmet>
+
+
+<div className=" bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen pb-10">
 
              <div className=" mt-[50px] px-2 md:px-0 overflow-hidden  w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-4/6">
 
@@ -146,6 +155,9 @@ const Index = ()=>{
 
            
         </div>
+</>
+
+        
     )
 }
 

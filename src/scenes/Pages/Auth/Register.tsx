@@ -13,6 +13,7 @@ import {MdOutlineDriveFileRenameOutline} from "react-icons/md";
 import {AiOutlineEyeInvisible} from "react-icons/ai";
 import {AiOutlineEye} from "react-icons/ai";
 import "./style.css";
+import { Helmet } from "react-helmet-async";
 
 type FormData = {
     firstName: string,
@@ -60,7 +61,17 @@ const Index =()=>{
     }
 
     return(
-        <div className=" bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen pb-10 mt-5">
+        <>
+    <Helmet>
+    <title>Enroll now</title>
+    <meta name="description" content="Learn highly sought
+after tech skills
+without any hassle.
+"></meta>
+    <link rel="canonical" href="/register"/>
+  </Helmet>
+        
+ <div className=" bg-[#1C1C1C] md:px-0 text-black bg-no-repeat bg-cover bg-center md:h-screen pb-10 mt-5">
             <div className=" mt-[60px] px-2 md:px-0 overflow-hidden h-fit w-[100%] flex flex-col md:flex-row items-center md:items-start justify-around gap-16 md:mx-auto md:w-4/6">
                 <div className="bg-[#0F1318]  gap-20 flex flex-col md:space-x-12 items-center pt-0 mt-20 rounded-none md:rounded-[50px] md:flex-row">
                 <div className=" h-[30%] md:w-[45%]  overflow-hidden rounded-none md:rounded-l-[50px]">
@@ -157,6 +168,11 @@ const Index =()=>{
                 </div>
             </div>
         </div>
+
+        </>
+
+
+       
     )
 }
 

@@ -4,9 +4,42 @@ import Boys from "@/assets/boys.png";
 import School from "@/assets/School.png";
 import V from "@/assets/v.png";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 const Index = () => {
   return (
     <>
+    <Helmet>
+    
+
+      <title>Our Mission</title>
+      <meta name="description" content="Through Education & Innovation, we are
+connecting the dots of technology in Africa, one
+enthusiast at a time."></meta>
+      <link rel="canonical" href="/about-us"/>
+
+      <title>Our Impact</title>
+      <meta name="description" content="Since August 2023, we've triumphantly
+nurtured the inaugural student cohort of our
+summer school. Our vision extends further
+— by 2028, we aim to empower one million
+Nigerian citizens with essential tech skills."></meta>
+      <link rel="canonical" href="/about-us"/>
+
+
+      <title>Our Core Values</title>
+      <meta name="description" content="We epitomize Transformation through constant
+Evolutionand collaboration, centering our focus onCommunity.Our Humane approach stems from
+the belief in universal opportunities for success.
+While driven by Youth, we welcome individuals of all
+ages to partake and flourish within our vibrant community.
+We are T.E.C.H.Y."></meta>
+
+      <link rel="canonical" href="/about-us"/>
+      <title>About us</title>
+      <meta name="description" content="Kindling a transformative spark in technology, resonating from Africa to the entire world"></meta>
+      <link rel="canonical" href="/about-us"/>
+    </Helmet>
+    
       <div className="bg-black">
         <div
           className="flex h-screen w-screen  items-center justify-center bg-black bg-cover"
@@ -26,9 +59,9 @@ const Index = () => {
           >
             <>
               <div className="flex-col px-4">
-                <h6 className="text-left text-[20px] font-semibold md:text-[40px]">
+                <h1 className="text-left text-[20px] font-semibold md:text-[40px]">
                   Vision{" "}
-                </h6>
+                </h1>
                 <div className="h-[4px]  w-[200px] bg-gradient-to-r from-from to-to md:h-[7px] md:w-[402px]"></div>
                 <div className="mt-5 text-[30px] font-semibold md:text-[79px]">
                   Kindling a transformative{" "}
@@ -55,9 +88,9 @@ const Index = () => {
             <img src={Boys} className="md:w-[100%] " />
           </div>
           <div className="w-full flex-col">
-            <h6 className="text-left text-[20px] font-semibold md:text-[40px]">
+            <h1 className="text-left text-[20px] font-semibold md:text-[40px]">
               Mission{" "}
-            </h6>
+            </h1>
             <div className="mt-3  h-[4px] w-[200px] bg-gradient-to-r from-from to-to md:mt-7 md:h-[7px] md:w-[402px]"></div>
 
             <div className="mt-3 text-[18px] md:mt-5 md:text-[24px] ">
@@ -80,9 +113,9 @@ const Index = () => {
         <div className="gap-[60px]  bg-bg3 px-5 md:flex md:items-center md:justify-between md:px-[100px]">
           <div className="flex w-full flex-col items-center">
             <div className="mt-10">
-              <h6 className="text-left text-[20px] font-semibold md:text-[40px]">
+              <h1 className="text-left text-[20px] font-semibold md:text-[40px]">
                 Impact{" "}
-              </h6>
+              </h1>
               <div className="mt-3  h-[4px] w-[200px] bg-gradient-to-r from-from to-to md:mt-7 md:h-[7px] md:w-[402px]"></div>
 
               <div className="mt-3 text-[18px] md:mt-5 md:text-[24px] ">
