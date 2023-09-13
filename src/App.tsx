@@ -17,6 +17,9 @@ import Login from "../src/scenes/Pages/Auth/Login"
 import Register from "../src/scenes/Pages/Auth/Register"
 import Dashboard from "../src/scenes/Pages/Dashboard/Index"
 import { useLoginMutation, useGetCurrentUserQuery } from "@/store/features/Api";
+import Classroom from '../src/scenes/Pages/Dashboard/components/Classroom'
+import DHome from '../src/scenes/Pages/Dashboard/components/Home'
+
 
 
 
@@ -25,7 +28,7 @@ import { useLoginMutation, useGetCurrentUserQuery } from "@/store/features/Api";
 function App() {
 
 
-  const { data, error } = useGetCurrentUserQuery()
+
  
 
  
@@ -42,8 +45,14 @@ const router = createBrowserRouter(
       <Route path="register" element={<Register/>}/>
      
     </Route>
+   
+       
+    
     <Route>
-       <Route path="Dashboard" element={ <Dashboard/>}/>
+       <Route path="Dashboard" element={ <Dashboard/>}>
+          <Route path="Home" element={<DHome/>} />
+           <Route path="Classroom" element={<Classroom/>} />
+        </Route>
     </Route>
     </>
    
@@ -66,6 +75,8 @@ type Props = {
 const Root =()=>{
   const [selectedPage, setSelectedPage] = useState<SelectedPage>( SelectedPage.Home);
   const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
+  const { data, error } = useGetCurrentUserQuery()
+  console.log("data", data)
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY === 0) {
@@ -110,6 +121,12 @@ const Root =()=>{
                 </div>
 
                 <div className="flex gap-12 text-sm">
+               {
+                data?  <div className=" hover:bg-green h-[30px] text-center flex items-center px-5 rounded-sm">
+                <Link to="/dashboard">Dashboard</Link>
+                </div> : null
+               }
+
                   <div className=" hover:bg-green h-[30px] text-center flex items-center px-5 rounded-sm">
                   <Link to="/login">Login</Link>
                   </div>
@@ -149,6 +166,9 @@ const Root =()=>{
             <Link to="/">Home</Link>
             <Link to="/about-us">About us</Link>
             <Link to="/our-team">Our team</Link>
+            {
+              data? <Link to="/our-team">Our team</Link>: null
+            }
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </div> 

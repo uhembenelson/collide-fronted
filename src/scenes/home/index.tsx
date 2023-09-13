@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import Bg from "@/assets/bgb.png"
 import Africa from "@/assets/africa.png"
 import { Helmet } from "react-helmet-async";
+import { useNavigation } from "react-router-dom";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -19,6 +20,7 @@ type Props = {
 
 const Home = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width:1060px)");
+  const navigate = useNavigation()
 
   return (
     <>
@@ -38,9 +40,11 @@ const Home = ({ setSelectedPage }: Props) => {
         <div className="md:text-[25px] text-2xl font-montserrat font-light leading-tight md:mt-5">Empowering young Africans with the essential skills <br/>
 to excel in the evolving future of work. </div>
 
+         <Link to="/register">
          <button className="h-[55px] bg-green  md:w-[30%]  w-[50%] mt-5 px-2 text-center items-center rounded-[5px] text-[20px] font-semibold">
          Get Started
          </button>
+         </Link>
       </div>
       <div className=" md:w-1/2 w-0 p-5 md:p-0">
         <img src={Africa} className=" "/>

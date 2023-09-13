@@ -143,7 +143,7 @@ const CourseCard = ({ onClose, children, data }: Props) => {
     amount: price * 100, //Amount is in the country's lowest currency. E.g Kobo, so 20000 kobo = N200
     // pk_test_299940f7bef87eb2b0d1e584e89665eec91be4f9
     // pk_live_1d303d36ff533def3dfa814bbf3bd69664fa84c5
-    publicKey: "pk_test_299940f7bef87eb2b0d1e584e89665eec91be4f9",
+    publicKey: "pk_live_1d303d36ff533def3dfa814bbf3bd69664fa84c5",
   };
 
   const componentProps = {
@@ -163,7 +163,7 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                 <div
                   onClick={() => {
                     setShowm(true),
-                    setPrice(parseInt(item.price)),
+                    setPrice(item.price  - ((parseInt(item.price)) / 100) *10),
                     setPaymentType("partTime")
                   }}
                   className={`p-3 ${
@@ -215,10 +215,36 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         {" "}
                         Location : {item.location}
                       </div>
+                     
+                    <div>
                       <div className="text-[10px] font-semibold text-black  md:text-[13px]">
-                        Price : {formatter.format(parseInt(item.price)) }
+                        {" "}
+                        Price :{" "}
+                        {formatter.format( item.price  - ((parseInt(item.price)) / 100) *10 )
+                        
+                        }
+                        {" "}
+                      </div>
+
+                      <div className="text-[10px] font-semibold text-black  md:text-[13px] line-through">
+                        {formatter.format(item.price)} 
+                      </div>
+
                       </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     <div className=" ">
@@ -278,6 +304,8 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         {" "}
                         Location : {item.location}
                       </div>
+
+                      <div>
                       <div className="text-[10px] font-semibold text-black  md:text-[13px]">
                         {" "}
                         Price :{" "}
@@ -290,6 +318,13 @@ const CourseCard = ({ onClose, children, data }: Props) => {
                         
                         }{" "}
                       </div>
+
+                      <div className="text-[10px] font-semibold text-black  md:text-[13px] line-through">
+                        {formatter.format(item.price * item.duration)} 
+                      </div>
+
+                      </div>
+                     
                     </div>
 
 

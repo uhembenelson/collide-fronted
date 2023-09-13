@@ -2,7 +2,7 @@ import Footer from "@/scenes/footer";
 import AB from "@/assets/abbg.png";
 import Boys from "@/assets/boys.png";
 import School from "@/assets/School.png";
-import V from "@/assets/v.png";
+import V from "@/assets/three.png";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 const Index = () => {

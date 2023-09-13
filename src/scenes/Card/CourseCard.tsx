@@ -136,10 +136,11 @@ const CourseCard = ({ onClose, children }: Props) => {
               {title:'1. Grids & Layouts'},
                {title:'2. Colour theory'}, 
                {title:'3. Typography'},
-               {title:'4. Motion & Micro-interactions.'},
-               {title:'5. Collaborative tools for Design.'},
-               {title:'6. Design & Prototyping for mobile & Web.'},
-               {title:'7. Design Systems.'},
+               {title:'4. Collaborative tools for Design.'},
+               {title:'5. How to design Illustrations.'},
+               {title:'6. Motion & Micro-interactions.'},
+               {title:'7. Design & Prototyping for mobile & Web.'},
+               {title:'8. Design Systems.'},
               ]
           },
           {
@@ -147,7 +148,6 @@ const CourseCard = ({ onClose, children }: Props) => {
             tile: "UX Research Methodologies",
             content: [
               {title:'1. Qualitative & Quantitative Research.)'},
-  
             {title:'2. How to conduct user interviews & gather feedback.'},
             {title: '3. How to frame a Problem Statement.'},
             {title:'4. Importance of Empathy maps.'},
@@ -158,14 +158,20 @@ const CourseCard = ({ onClose, children }: Props) => {
           },
           {
             time : "Month 4",
-            tile: "Advanced Application of UX Principles.",
-            content: [{
-              title:'1. Case Study: Fintech Solution.'
-            }]
+            tile: "Introduction to Brand storytelling & Identity Design.",
+            content: [
+              { title:'1. Building a brand - Introduction to branding.'},
+              {title:'2. Why branding matters.'},
+              {title:'3. What branding is and is not'},
+              {title:'4. How to design a solid brand identity.'},
+              {title:'5. How to design a brand style guide.'},
+               {title:'6. How to craft a solid brand/marketing strategy document'},
+              
+          ]
           },
           {
             time : "Month 5",
-            tile: "Deep dive into Prototyping.",
+            tile: "Advanced Application of UX Principles.",
             content: [{
               title:'1. Portfolio Project Kick-off..'
             }]
@@ -747,75 +753,3 @@ export default CourseCard
 
 
 
-
-
-
-
-
-
-
-
-// <div key={item.id} className="bg-white  rounded-[10px] mt-7 w-full md:w-[35%] border-2 border-darker-gray  justify-between flex flex-col">
-// <div className="">
-//   <div className="rounded-[10px] p-2 m-2 bg-black">
-//     <img src={item.imageURL} className="rounded-[10px] h-[88px] w-[80%] mt-7 ml-4 mb-7 object-cover" /> 
-//     <div className="text-white ml-4 font-semibold md:text-[32px] ">{item.category}</div>
-    
-//   </div>
-    
-//     <div className="text-black px-5 py-3 font-semibold md:text-[25px] ">{item.title}</div>
-//     <div className="text-gray-400 px-5 font-light   md:text-[12px] text-[12px] line-clamp-3 ">{item.description}</div>
-// </div>
-// <div className="">
-//   <div className="flex justify-between items-end">
-//   <div className="text-black px-5  mt-3   ">
-//         <div className="font-semibold text-black md:text-[13px] text-[12px] py-[1px]" > Model : <span className="text-green">{item.location}</span></div>
-//         <div className="font-semibold text-black md:text-[13px] text-[12px] py-[1px]" > Price : <span className="text-green">{formatter.format(parseInt(item.price))}</span></div>
-//         <div className="font-semibold text-black md:text-[13px] text-[12px] py-[1px]" > Duration : <span className="text-green">{item.duration} Months</span></div>
-      
-       
-//     </div>
-
-//     <div className=" ">
-      
-//       {
-//         item?.status === "Enroll" ? 
-
-//         <div  className="flex flex-row justify-between px-5 pointer ">
-
-//         <div  onClick={()=>setOpen(true)} className="flex gap-5 items-center justify-center bg-green rounded-[5px] cursor-pointer">
-
-//             <div className="text-white md:text-1xl font-semibold tmd:ext-[20px] text-[18px] md:p-4 md:px-8  p-2 px-6 ">{item.status}</div>
-//         </div>
-
-       
-
-//     </div>
-//         : 
-//         <div className="flex flex-row justify-between py-5 px-5 ">
-
-//         <div className="flex gap-5 items-center justify-center">
-//             <div className="text-black md:text-1xl font-semibold text-[15px] ">
-//               {item.status}</div>
-//         </div>
-
-        
-
-//     </div>
-//       }
-//     </div>
-//     </div>
-
-//     <div className="cursor-pointer " onClick={()=>{
-//       gotoDetails(item)
-//     }}>
-  
-//    <div className="bg-green mt-6 ">
-//       <p className="text-[15px] text-white text-center p-2"> View course outline.</p>
-//          </div>
-  
-//     </div>
-
-// </div>
-
-// </div>

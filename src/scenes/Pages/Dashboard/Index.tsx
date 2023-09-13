@@ -5,11 +5,11 @@ import React from 'react';
 // import Settings from './components/Settings';
 import Sidebar from './sharedComponent/Sidebar';
 import DashboardNav from './sharedComponent/DashboardNav';
-import "./d-style.css"
 import CourseCard from '../../courseCard/CourseCard'
 import { useGetCurrentUserQuery } from "@/store/features/Api";
-import PaymentForm from './components/PaymentForm';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet, Link } from 'react-router-dom';
+import Navbar from './components/Navbar';
+
 
 
 const Index = () => {
@@ -18,20 +18,36 @@ const Index = () => {
 
   return (
    <>
-   {
-    data?  <div className=' w-full min-h-[100vh] flex  bg-light-gray'>
-    <div>
-      <Sidebar />
-    </div>
-    <div className='w-full'>
+   
+      <div className=' w-full min-h-[100vh]   bg-light-gray'>
+        <div className='flex'>
+        <Sidebar />
+        
+        <div className='flex-col w-full'>
+          <Navbar/>
+          <div>
+             <Outlet/>
+          </div>
+        </div>
+        </div>
+
+       
+       
+     
+
+
+
+
+      {/* <Sidebar />
       <DashboardNav />
-      <div className='md:px-10 md:py-10 px-5 py-5 flex-wrap flex md:gap-10 gap-5'>
-       <CourseCard />
       </div>
      
-    </div>
-  </div> : navigate('/login')
-   }
+       <Outlet/> */}
+
+   
+  
+  </div>
+   
    </>
   )
 }
